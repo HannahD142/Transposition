@@ -1,3 +1,8 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,19 +31,24 @@ public class Transposition extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         transposeButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         answerField = new javax.swing.JTextField();
         note = new javax.swing.JTextField();
         interval = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        song = new javax.swing.JTextField();
+        songResponse = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         transposeSong = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        transposeUpOrDown = new javax.swing.JTextField();
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
+        jLabel4.setText("New Note:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,9 +72,6 @@ public class Transposition extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 1, 14)); // NOI18N
-        jLabel4.setText("New Note:");
-
         answerField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 answerFieldActionPerformed(evt);
@@ -80,9 +87,9 @@ public class Transposition extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel5.setText("Song:");
 
-        song.addActionListener(new java.awt.event.ActionListener() {
+        songResponse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                songActionPerformed(evt);
+                songResponseActionPerformed(evt);
             }
         });
 
@@ -98,42 +105,44 @@ public class Transposition extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel7.setText("OR");
 
+        jLabel8.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
+        jLabel8.setText("Transpose Up or Down:");
+
+        transposeUpOrDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transposeUpOrDownActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(interval, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(song)
-                                    .addComponent(note)))
+                                .addComponent(jLabel5)
+                                .addGap(23, 23, 23)
+                                .addComponent(songResponse))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(transposeButton))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(note)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(interval)
+                                    .addComponent(transposeUpOrDown, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -146,8 +155,17 @@ public class Transposition extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(236, 236, 236))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(240, 240, 240))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addComponent(transposeButton)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,25 +178,27 @@ public class Transposition extends javax.swing.JFrame {
                 .addComponent(transposeSong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(song, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(songResponse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(note, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(transposeUpOrDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(interval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(transposeButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(29, 29, 29)
+                .addComponent(transposeButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(answerField, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(4, 4, 4))
         );
 
         pack();
@@ -186,13 +206,46 @@ public class Transposition extends javax.swing.JFrame {
 
     private void transposeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transposeButtonActionPerformed
         // TODO add your handling code here:
-        String originalNote = note.getText();
-        int numOfHalfSteps = Integer.parseInt(interval.getText());
-        String letter = toLetter(originalNote);
-        int number = toNumber(letter);
-        int transposedUp = transposeUp(number, numOfHalfSteps);
-        char transposedLetter = toTransposedLetter(transposedUp);
-        String transposedNote = toNote(transposedLetter);
+        String songOrNote = transposeSong.getText();
+        String upOrDown = transposeUpOrDown.getText();
+        if ("Yes".equals(songOrNote) || "yes".equals(songOrNote) || "YES".equals(songOrNote)){
+            String song = songResponse.getText();
+            String songSelection = pickSong(song);
+
+            try {
+                File file = new File(songSelection);
+                Scanner sc = new Scanner(file);
+                String songNotes = sc.nextLine();
+                System.out.println(songNotes);
+                } catch (FileNotFoundException e) {
+                System.out.println("File not found.");
+                }
+        }
+        if ("No".equals(songOrNote) || "no".equals(songOrNote) || "NO".equals(songOrNote)){
+            if("up".equals(upOrDown) || "UP".equals(upOrDown) || "Up".equals(upOrDown)){
+                String originalNote = note.getText();
+                int numOfHalfSteps = Integer.parseInt(interval.getText());
+                String letter = toLetter(originalNote);
+                int number = toNumber(letter);
+                int transposedUp = transposeUp(number, numOfHalfSteps);
+                char transposedLetter = toTransposedLetter(transposedUp);
+                String transposedNote = toNote(transposedLetter);
+                answerField.setText(transposedNote);       
+            }
+            if("down".equals(upOrDown) || "Down".equals(upOrDown) || "DOWN".equals(upOrDown)){
+                String originalNote = note.getText();
+                int numOfHalfSteps = Integer.parseInt(interval.getText());
+                String letter = toLetter(originalNote);
+                int number = toNumber(letter);
+                int transposedDown = transposeDown(number, numOfHalfSteps);
+                char transposedLetter = toTransposedLetter(transposedDown);
+                String transposedNote = toNote(transposedLetter);
+                answerField.setText(transposedNote);
+            }
+         
+        }
+
+
         
     }//GEN-LAST:event_transposeButtonActionPerformed
 
@@ -204,13 +257,17 @@ public class Transposition extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_noteActionPerformed
 
-    private void songActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songActionPerformed
+    private void songResponseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_songResponseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_songActionPerformed
+    }//GEN-LAST:event_songResponseActionPerformed
 
     private void transposeSongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transposeSongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_transposeSongActionPerformed
+
+    private void transposeUpOrDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transposeUpOrDownActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_transposeUpOrDownActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,13 +314,18 @@ public class Transposition extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField note;
-    private javax.swing.JTextField song;
+    private javax.swing.JTextField songResponse;
     private javax.swing.JButton transposeButton;
     private javax.swing.JTextField transposeSong;
+    private javax.swing.JTextField transposeUpOrDown;
     // End of variables declaration//GEN-END:variables
 
     public static String toLetter(String note){
+   // int seriesLength = noteSeries.length();
+    
+        
     String aFlat = "Af";
     String a = "A";
     String aSharp = "A#";
@@ -464,6 +526,48 @@ public class Transposition extends javax.swing.JFrame {
       else{
           return("error");
       }
+    }
+
+    public String pickSong(String songNumber){
+        String odeToJoy = "OdeToJoy.txt";
+        String maryHadALittleLamb = "MaryHadALittleLamb.txt";
+        String jingleBells = "JingleBells.txt";
+        String hotCrossBuns = "HotCrossBuns.txt";
+        String fuzzyWuzzy = "FuzzyWuzzy.txt";
+        String theCatCameBack = "TheCatCameBack.txt";
+        String twinkleTwinkleLittleStar = "TwinkleTwinkleLittleStar.txt";
+        if(songNumber.equals("1")){
+            String songSelection = odeToJoy;
+            return songSelection;
+        }
+        if(songNumber.equals("2")){
+            String songSelection = maryHadALittleLamb;
+            return songSelection;
+        }
+        if(songNumber.equals("3")){
+            String songSelection = jingleBells;
+            return songSelection;
+        }
+        if(songNumber.equals("4")){
+            String songSelection = hotCrossBuns;
+            return songSelection;
+        }
+        if(songNumber.equals("5")){
+            String songSelection = fuzzyWuzzy;
+            return songSelection;
+        }
+        if(songNumber.equals("6")){
+            String songSelection = theCatCameBack;
+            return songSelection;
+        }
+        if(songNumber.equals("7")){
+            String songSelection = twinkleTwinkleLittleStar;
+            return songSelection;
+        }
+        
+        else{
+            return("Please select a different song.");
+        }
     }
      
 }
