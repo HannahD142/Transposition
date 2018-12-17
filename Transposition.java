@@ -52,7 +52,7 @@ public class Transposition extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel1.setBackground(new java.awt.Color(255, 153, 102));
         jLabel1.setFont(new java.awt.Font("Wide Latin", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 0, 0));
         jLabel1.setText("Transposing Made Easy!");
@@ -63,6 +63,7 @@ public class Transposition extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 18)); // NOI18N
         jLabel3.setText("Number of Half Steps:");
 
+        transposeButton.setBackground(new java.awt.Color(255, 153, 102));
         transposeButton.setFont(new java.awt.Font("Tw Cen MT", 1, 24)); // NOI18N
         transposeButton.setForeground(new java.awt.Color(102, 0, 0));
         transposeButton.setText("Transpose!");
@@ -211,6 +212,7 @@ public class Transposition extends javax.swing.JFrame {
         if ("Yes".equals(songOrNote) || "yes".equals(songOrNote) || "YES".equals(songOrNote)){
             String song = songResponse.getText();
             String songSelection = pickSong(song);
+            if("up".equals(upOrDown) || "UP".equals(upOrDown) || "Up".equals(upOrDown)){
 
             try {
                 File file = new File(songSelection);
@@ -220,6 +222,8 @@ public class Transposition extends javax.swing.JFrame {
                 } catch (FileNotFoundException e) {
                 System.out.println("File not found.");
                 }
+            
+                    songToNumbers(songSelection, 4);}
         }
         if ("No".equals(songOrNote) || "no".equals(songOrNote) || "NO".equals(songOrNote)){
             if("up".equals(upOrDown) || "UP".equals(upOrDown) || "Up".equals(upOrDown)){
@@ -242,6 +246,7 @@ public class Transposition extends javax.swing.JFrame {
                 String transposedNote = toNote(transposedLetter);
                 answerField.setText(transposedNote);
             }
+
          
         }
 
@@ -475,7 +480,8 @@ public class Transposition extends javax.swing.JFrame {
     }
     public static String toNote(char charLetter){
       String letter = Character.toString(charLetter);
-        if(letter.equals("A")){
+      
+      if(letter.equals("A")){
           String note = "G#/Af";
           return note;
       } 
@@ -569,5 +575,71 @@ public class Transposition extends javax.swing.JFrame {
             return("Please select a different song.");
         }
     }
-     
+    public void songToNumbers(String song, int numberOfHalfSteps){
+        char [] songChars = song.toCharArray();
+            
+            for(int i = 0; i<songChars.length; i++){
+                int noteNumber = (int) songChars [i];
+                int transposedNumber = noteNumber + numberOfHalfSteps;
+                     if (transposedNumber >= 77){
+                        transposedNumber -= 12;
+                     }
+                char transposedChar = (char) transposedNumber;
+                String transposedNote = Character.toString(transposedChar);
+                
+                answerField.setText( answerField.getText() + transposedNote);
+      if(transposedNote.equals("A")){
+          String noteTransposed = "G#/Af";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+
+      } 
+      if(transposedNote.equals("B")){
+          String noteTransposed = "A";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("C")){
+          String noteTransposed = "A#/Bf";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("D")){
+          String noteTransposed = "B/Cf";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("E")){
+          String noteTransposed = "B#/C";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("F")){
+          String noteTransposed = "C#/Df";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("G")){
+          String noteTransposed = "D";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("H")){
+          String noteTransposed = "D#/Ef";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("I")){
+          String noteTransposed = "E/Ff";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("J")){
+          String noteTransposed = "E#/F";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("K")){
+          String noteTransposed = "F#/Gf";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      } 
+      if(transposedNote.equals("L")){
+          String noteTransposed = "G";
+          answerField.setText( answerField.getText() + " " + noteTransposed);
+      }
+   
+            } 
+
+    }
 }
+
