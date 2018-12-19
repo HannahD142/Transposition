@@ -209,26 +209,37 @@ public class Transposition extends javax.swing.JFrame {
         // TODO add your handling code here:
         String songOrNote = transposeSong.getText();
         String upOrDown = transposeUpOrDown.getText();
+        int numOfHalfSteps = Integer.parseInt(interval.getText());
         if ("Yes".equals(songOrNote) || "yes".equals(songOrNote) || "YES".equals(songOrNote)){
             String song = songResponse.getText();
             String songSelection = pickSong(song);
             if("up".equals(upOrDown) || "UP".equals(upOrDown) || "Up".equals(upOrDown)){
-
             try {
                 File file = new File(songSelection);
                 Scanner sc = new Scanner(file);
                 String songNotes = sc.nextLine();
                 System.out.println(songNotes);
-                } catch (FileNotFoundException e) {
+                songTransposeUp(songNotes, numOfHalfSteps);
+            } catch (FileNotFoundException e) {
                 System.out.println("File not found.");
                 }
+            }
+            if("down".equals(upOrDown) || "Down".equals(upOrDown) || "DOWN".equals(upOrDown)){
+            try {
+                File file = new File(songSelection);
+                Scanner sc = new Scanner(file);
+                String songNotes = sc.nextLine();
+                System.out.println(songNotes);
+                songTransposeDown(songNotes, numOfHalfSteps);
+            } catch (FileNotFoundException e) {
+                System.out.println("File not found.");
+                }    
+            }
             
-                    songToNumbers(songSelection, 4);}
         }
         if ("No".equals(songOrNote) || "no".equals(songOrNote) || "NO".equals(songOrNote)){
             if("up".equals(upOrDown) || "UP".equals(upOrDown) || "Up".equals(upOrDown)){
                 String originalNote = note.getText();
-                int numOfHalfSteps = Integer.parseInt(interval.getText());
                 String letter = toLetter(originalNote);
                 int number = toNumber(letter);
                 int transposedUp = transposeUp(number, numOfHalfSteps);
@@ -238,7 +249,6 @@ public class Transposition extends javax.swing.JFrame {
             }
             if("down".equals(upOrDown) || "Down".equals(upOrDown) || "DOWN".equals(upOrDown)){
                 String originalNote = note.getText();
-                int numOfHalfSteps = Integer.parseInt(interval.getText());
                 String letter = toLetter(originalNote);
                 int number = toNumber(letter);
                 int transposedDown = transposeDown(number, numOfHalfSteps);
@@ -575,71 +585,182 @@ public class Transposition extends javax.swing.JFrame {
             return("Please select a different song.");
         }
     }
-    public void songToNumbers(String song, int numberOfHalfSteps){
+    public void songTransposeUp(String song, int numberOfHalfSteps){
         char [] songChars = song.toCharArray();
-            
-            for(int i = 0; i<songChars.length; i++){
-                int noteNumber = (int) songChars [i];
+             System.out.println(song.length());
+            for(int i = 0; i<song.length(); i++){
+                int noteNumber = (int)(songChars [i]);
                 int transposedNumber = noteNumber + numberOfHalfSteps;
                      if (transposedNumber >= 77){
                         transposedNumber -= 12;
                      }
                 char transposedChar = (char) transposedNumber;
                 String transposedNote = Character.toString(transposedChar);
-                
-                answerField.setText( answerField.getText() + transposedNote);
+                String [] transposedSong;
+                transposedSong = new String [song.length()+1];
       if(transposedNote.equals("A")){
           String noteTransposed = "G#/Af";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
-
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+          answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("B")){
           String noteTransposed = "A";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+          answerField.setText(answerField.getText() + " " + transposedSong[i]);
+
       } 
       if(transposedNote.equals("C")){
           String noteTransposed = "A#/Bf";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("D")){
           String noteTransposed = "B/Cf";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("E")){
           String noteTransposed = "B#/C";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("F")){
           String noteTransposed = "C#/Df";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("G")){
           String noteTransposed = "D";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("H")){
           String noteTransposed = "D#/Ef";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("I")){
           String noteTransposed = "E/Ff";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("J")){
           String noteTransposed = "E#/F";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("K")){
           String noteTransposed = "F#/Gf";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       } 
       if(transposedNote.equals("L")){
           String noteTransposed = "G";
-          answerField.setText( answerField.getText() + " " + noteTransposed);
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
       }
-   
             } 
-
     }
+        public void songTransposeDown(String song, int numberOfHalfSteps){
+        char [] songChars = song.toCharArray();
+             System.out.println(song.length());
+            for(int i = 0; i<song.length(); i++){
+                int noteNumber = (int)(songChars [i]);
+                int transposedNumber = noteNumber + numberOfHalfSteps;
+                     if (transposedNumber <= 64){
+                         transposedNumber += 12;
+                    }
+                char transposedChar = (char) transposedNumber;
+                String transposedNote = Character.toString(transposedChar);
+                String [] transposedSong;
+                transposedSong = new String [song.length()+1];
+      if(transposedNote.equals("A")){
+          String noteTransposed = "G#/Af";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+          answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("B")){
+          String noteTransposed = "A";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+          answerField.setText(answerField.getText() + " " + transposedSong[i]);
+
+      } 
+      if(transposedNote.equals("C")){
+          String noteTransposed = "A#/Bf";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("D")){
+          String noteTransposed = "B/Cf";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("E")){
+          String noteTransposed = "B#/C";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("F")){
+          String noteTransposed = "C#/Df";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("G")){
+          String noteTransposed = "D";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("H")){
+          String noteTransposed = "D#/Ef";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("I")){
+          String noteTransposed = "E/Ff";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("J")){
+          String noteTransposed = "E#/F";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("K")){
+          String noteTransposed = "F#/Gf";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      } 
+      if(transposedNote.equals("L")){
+          String noteTransposed = "G";
+          System.out.println(noteTransposed);
+          transposedSong [i] = noteTransposed;
+           answerField.setText(answerField.getText() + " " + transposedSong[i]);
+      }
+            } 
+    }
+
 }
 
